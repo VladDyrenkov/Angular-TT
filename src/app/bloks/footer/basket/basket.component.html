@@ -1,0 +1,24 @@
+<div class="basket">
+  <div class="basket__content">
+    <div class="basket__content__catalog" *ngFor="let dish of selectedDish">
+      <div class="dish">
+        <div class="dish__image">
+        </div>
+        <div class="dish__name">{{dish.name}}</div>
+        <div class="dish__value">{{dish.count}}</div>
+        <div class="dish__value-incdec">
+          <app-counter
+            [(count)]="dish.count"
+            (click)="recalcPrice()"
+          ></app-counter>
+        </div>
+        <div class="dish__price">{{dish.price}}</div>
+        <button
+          (click)="deleteDish(dish.id)"
+          class="dish__button-delete"
+        >X</button>
+      </div>
+    </div>
+  </div>
+  <button class="basket__confirm-button" (click)="showBasket()">click here!</button>
+</div>

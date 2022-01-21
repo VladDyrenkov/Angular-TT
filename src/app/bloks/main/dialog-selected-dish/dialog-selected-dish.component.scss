@@ -1,0 +1,64 @@
+.dialog{
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(134, 128, 128, 0.3);
+  position: absolute;
+  top:0;
+  right:0;
+
+  &__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  &__block{
+    width: 300px;
+    height: 160px;
+    display: flex;
+    position: absolute;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+
+
+    border: solid 2px #ccc;
+    background: snow;
+    border-radius: 16px;
+  }
+
+  &__message{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 32px;
+  }
+
+  &__btn{
+    width: 100px;
+    height: 40px;
+    border: solid 2px yellow;
+    border-radius: 8px;
+    transition: all 0.3s;
+    font-size: 24px;
+    font-weight: bold;
+
+    &:hover{
+      background-color: yellow;
+      color: white;
+    }
+  }
+
+  &__dish{
+    width: 60%px;
+    height: 50%px;
+    border: solid #ccc 3px;
+
+    &__image{
+      height: 200px;
+      width: 280px;
+      border-radius: 25px;
+    }
+  }
+}

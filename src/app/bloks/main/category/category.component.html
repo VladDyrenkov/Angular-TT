@@ -1,0 +1,19 @@
+<!-- Directives -->
+<!-- Binding -->
+<div class="main">
+  <div class="list">
+    <div class="item" *ngFor="let category of categories">
+      <button
+        class="category__button"
+        [routerLink]="'/categories/' + category.name"
+        [routerLinkActive]="'active'"
+        style="background-image: url({{category.image}});"
+      >
+      </button>
+    </div>
+  </div>
+  <app-category-dishes
+    [dishes]="filtredDishes"
+  ></app-category-dishes>
+</div>
+

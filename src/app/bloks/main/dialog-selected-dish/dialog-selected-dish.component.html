@@ -1,0 +1,23 @@
+<div class="dialog">
+  <div class="dialog__container">
+    <div class="dialog__block">
+      <h1 class="dialog__message">Success</h1>
+      <div class="dialog__dish">
+        <img class="dialog__dish__image" [src]="selectedDish.image">
+        <div class="dialog__dish__name">{{selectedDish.name}}</div>
+        <div class="dialog__dish__price">{{selectedDish.price}}</div>
+        <div class="Dialog__dish__count">
+        </div>
+        <app-counter [(count)]="selectedDish.count"></app-counter>
+        <button
+          class="dialog__dish__btn"
+          (click)="onPress()"
+        >cancel</button>
+      </div>
+      <button
+        class="dialog__btn"
+        (click)="confirm(selectedDish)"
+      >OK</button>
+    </div>
+  </div>
+</div>
