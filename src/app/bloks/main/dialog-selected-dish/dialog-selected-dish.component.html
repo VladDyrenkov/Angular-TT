@@ -1,4 +1,4 @@
-<div class="dialog">
+<div class="dialog" [class.hideStyle]= "isHide">
   <div class="dialog__container">
     <div class="dialog__block">
       <h1 class="dialog__message">Success</h1>
@@ -11,7 +11,7 @@
         <app-counter [(count)]="selectedDish.count"></app-counter>
         <button
           class="dialog__dish__btn"
-          (click)="onPress()"
+          (click)="hideDialog()"
         >cancel</button>
       </div>
       <button

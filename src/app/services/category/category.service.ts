@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { first, Subject } from 'rxjs';
+import { BehaviorSubject, first, Observable, Subject } from 'rxjs';
 import { Category } from 'src/app/models/category.interface';
 
 @Injectable({
@@ -12,12 +12,11 @@ export class CategoryService {
   constructor(private http: HttpClient) {
   }
 
-  public loadCategories(): void {
-    this.http.get<Category[]>('http://localhost:3000/category')
-      .pipe(first())
-      .subscribe((data:Category[]) => {
-        console.log(data);
-        this.uploadingCategories$.next(data);
-      });
+  public loadCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>('http://localhost:3000/category');
+      // .pipe(first())
+      // .subscribe((data:Category[]) => {
+      //   this.uploadingCategories$.next(data);
+      // });
   }
 }

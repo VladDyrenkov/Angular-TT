@@ -1,23 +1,18 @@
-<div class="footer">
+<div class="footer" *ngIf="(price$ | async) as basketTotal">
   <div class="footer__basket">
-    <div class="footer__basket-container" (click)="showBasket()"> 
+    <div class="footer__basket-container" (click)="basket.showBaskett()"> 
       <p><i class="fas fa-shopping-basket fa-4x"></i></p>
       <div class="footer__basket-value">
-        <div class="">:</div>
-        <div class="">
-          {{data.value}}
+        <div>:</div>
+        <div>
+          {{basketTotal.value || 0}}
         </div>
       </div>
     </div>
   </div>
   <div class="footer__total_price">
-    <div class="footer__total_price-content"> Price: {{data.sum}}</div>
+    <div class="footer__total_price-content"> Price: {{basketTotal.sum || '0.00'}}</div>
     <i class="fas fa-hryvnia fa-2x"></i>
   </div>
 </div>
-<div *ngIf="isVisibleBasket">
-  <app-basket
-    (sendVisibilityStatus)="showBasket($event)"
-    
-  ></app-basket>
-</div>
+<app-basket #basketCard></app-basket>

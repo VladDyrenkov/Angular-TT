@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy, Input } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { BasketService } from 'src/app/services/basket/basket.service';
 import { ExtendedDish } from 'src/app/services/dish/dish';
 
@@ -7,30 +8,35 @@ import { ExtendedDish } from 'src/app/services/dish/dish';
   templateUrl: './basket.component.html',
   styleUrls: ['./basket.component.scss']
 })
-export class BasketComponent implements OnInit{
-  @Output() public sendVisibilityStatus: EventEmitter<boolean> = new EventEmitter<boolean>();
+export class BasketComponent {
+  // @Output() public sendVisibilityStatus: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  public selectedDish:ExtendedDish[] = []; 
-  public catalogDish:ExtendedDish[] = [];
+  // public selectedDish:ExtendedDish[] = []; 
+  // public catalogDish:ExtendedDish[] = [];
+  public isHide: boolean = true;
+  public dish$: Subject<any> = new BehaviorSubject([]);
 
-  constructor(private basketService: BasketService) { }
-
-  ngOnInit(): void {
-    this.catalogDish = [];
-    this.basketService.sendDish$.subscribe((data) => {
-      this.selectedDish = data;
-    })
+  constructor(private basketService: BasketService) { 
+    this.dish$ = basketService.dish$;
   }
+  // ngOnInit(): void {
+  //   this.catalogDish = [];
+  //   this.basketService.dish$.subscribe((data) => {
+  //     this.selectedDish = data;
+  //   })
+  // }
 
   //recalculate price after change order
   public recalcPrice(){
-    console.log(this.selectedDish)
     this.basketService.recalcTotalPrice();
   }
 
-  //send visibility status of basket
-  public showBasket() {
-    this.sendVisibilityStatus.emit(false);
+  public showBaskett() {
+    this.isHide = false;
+  }
+
+  public hideBasket(){
+    this.isHide = true;
   }
 
   //delete selected dish from Order

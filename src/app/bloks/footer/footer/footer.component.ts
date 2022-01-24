@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BasketService } from '../../../services/basket/basket.service';
-import { Data } from '../../../services/basket/basket.service'
+import { basketTotal } from 'src/app/models/basket-data.interface';
+import { BasketComponent } from '../basket/basket.component'
+import { BehaviorSubject, Subject } from 'rxjs';
 
 
 @Component({
@@ -8,28 +10,18 @@ import { Data } from '../../../services/basket/basket.service'
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent implements OnInit {
-  public data: Data = {
-    sum: 0,
-    value: 0,
-  };
+export class FooterComponent {
+  @ViewChild ('basketCard', {static: false}) basket!: BasketComponent;
+  public basketTotal!: basketTotal;
 
-  public isVisibleBasket: boolean = false;
-
+  public price$:Subject<any> = new BehaviorSubject({});
   constructor(private basketService: BasketService) {
+    this.price$ = basketService.price$;
   }
 
-  ngOnInit(): void {
-    this.basketService.sendPrice$.subscribe((data) => {
-      console.log(data);
-      
-      this.data = data;
-    })
-  }
-
-  public showBasket(basketVisibility: boolean = true) {
-    this.isVisibleBasket = basketVisibility;
-    console.log(this.data)
-  }
-
+  // ngOnInit(): void {
+  //   this.basketService.price$.subscribe((data) => {      
+  //     this.basketTotal = data;
+  //   });
+  // };
 }

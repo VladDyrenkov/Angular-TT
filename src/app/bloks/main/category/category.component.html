@@ -2,11 +2,11 @@
 <!-- Binding -->
 <div class="main">
   <div class="list">
-    <div class="item" *ngFor="let category of categories">
+    <div class="item" *ngFor="let category of (uploadingCategories$ | async)">
       <button
         class="category__button"
-        [routerLink]="'/categories/' + category.name"
-        [routerLinkActive]="'active'"
+        [routerLink]="'/categories/' + category.url"
+        (click)="setFilterUrl(category.url)"
         style="background-image: url({{category.image}});"
       >
       </button>

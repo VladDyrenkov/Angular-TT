@@ -6,13 +6,12 @@
         <div class="dish__price">{{dish.price}}</div>
         <button
           class="dish__btn"
-          
           (click)="selectDish(dish)"
         >Add</button>
     </div>
   </div>
 </div>
-<div *ngIf="displayStatus && selectedDish">
-  <app-dialog-selected-dish [selectedDishLink]="selectedDish" (dialogButton)="onPress($event)"></app-dialog-selected-dish>
-</div>
+<!-- <div *ngIf="selectedDish"> -->
+  <app-dialog-selected-dish #dishDialog [selectedDishLink]="selectedDish"></app-dialog-selected-dish>
+<!-- </div> -->
 

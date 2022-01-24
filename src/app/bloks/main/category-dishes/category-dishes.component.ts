@@ -1,9 +1,6 @@
-import { Component, EventEmitter, OnInit, Input, OnDestroy } from '@angular/core';
-import { BasketService } from '../../../services/basket/basket.service';
+import { Component, Input, ViewChild } from '@angular/core';
 import { Dish } from 'src/app/models/dish.interface';
-import { ExtendedDish } from 'src/app/services/dish/dish';
-import { Subscription } from 'rxjs';
-
+import { DialogSelectedDishComponent } from '../dialog-selected-dish/dialog-selected-dish.component';
 
 
 @Component({
@@ -14,8 +11,8 @@ import { Subscription } from 'rxjs';
 export class CategoryDishesComponent {
 
   @Input() dishes: Dish[] = [];
-  
-  public displayStatus: boolean = false;
+  @ViewChild('dishDialog', { static: false }) dialog!: DialogSelectedDishComponent;
+
   public selectedDish: Dish | undefined;
 
   constructor() {
@@ -23,11 +20,6 @@ export class CategoryDishesComponent {
 
   public selectDish(dish: Dish): void {
     this.selectedDish = dish;
-    this.onPress();
+    this.dialog.showDialog();
   }
-
-  public onPress(status: boolean = true): void {
-    this.displayStatus = status;
-  }
-
 }
