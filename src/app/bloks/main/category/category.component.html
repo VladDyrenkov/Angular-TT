@@ -2,14 +2,16 @@
 <!-- Binding -->
 <div class="main">
   <div class="list">
-    <div class="item" *ngFor="let category of (uploadingCategories$ | async)">
+    <div class="item" *ngFor="let category of categories">
+      <div class="category__name">
+        <p>{{category.name}}</p>
+      </div>
       <button
         class="category__button"
         [routerLink]="'/categories/' + category.url"
-        (click)="setFilterUrl(category.url)"
         style="background-image: url({{category.image}});"
       >
-      </button>
+      </button>      
     </div>
   </div>
   <app-category-dishes

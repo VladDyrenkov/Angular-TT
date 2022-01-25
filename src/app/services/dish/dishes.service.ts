@@ -16,10 +16,5 @@ export class DishesService {
 
   public loadDishes(): Observable<Dish[]> {
     return this.http.get<Dish[]>('http://localhost:3000/dish');
-      // .pipe(first())
-      // .subscribe((data:Dish[]) => {
-      //   this.dishes=[...data];
-      //   this.dishFromDb$.next(this.dishes);
-      // });
   }
 }

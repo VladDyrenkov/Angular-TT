@@ -1,6 +1,6 @@
-import { Component, DoCheck } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
-import { forkJoin, Observable } from 'rxjs';
+import { Component, DoCheck, OnDestroy } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import { filter, forkJoin } from 'rxjs';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { Category } from '../../../models/category.interface';
@@ -12,70 +12,46 @@ import { DishesService } from '../../../services/dish/dishes.service'
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
-export class CategoryComponent implements DoCheck {
+export class CategoryComponent implements OnDestroy{
   public categories: Category[] = [];
   public dishes: Dish[] = [];
   public categoryUrl!: string;
   public filtredDishes: Dish[] = [];
   public subscription!: Subscription;
-  public uploadingCategories$!: Observable<any>;
-  public observable:Observable<any> = new Observable();
+  private subscriptionRout: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private dishesService: DishesService,
-    private categoryService: CategoryService) {
+    private categoryService: CategoryService,
+    ) {
+      this.subscriptionRout = route.params.subscribe((param) =>{
+        this.categoryUrl = param['catUrl']
+        this.fileredDish();
+      })
   }
 
   ngOnInit() {
-    // this.categoryService.loadCategories();
-    // this.subscription = this.categoryService.uploadingCategories$.subscribe((categories) => {
-    //   this.categories = categories;
-    // });
-
     this.subscription = forkJoin([
       this.categoryService.loadCategories(),
       this.dishesService.loadDishes()
     ]).subscribe(([categories, dish]) => {
       this.categories = [...categories];
       this.dishes = [...dish];
+      this.fileredDish();
     });
-    
-    this.uploadingCategories$ = this.categoryService.loadCategories();
 
     this.categoryUrl= this.route.snapshot.params['catUrl'];
-
-    this.subscription = this.dishesService.dishFromDb$.subscribe((dishes) => {
-      this.dishes = dishes;      
-    });
-
-    this.dishesService.loadDishes();
-
     this.fileredDish();
-
   }
-  
-  ngDoCheck(){
-    this.categoryUrl= this.route.snapshot.params['catUrl'];    
-    this.fileredDish();
+
+  ngOnDestroy(): void {
+      this.subscriptionRout.unsubscribe();
   }
 
   private fileredDish(): void {
-    let idForFilter: string = '';
-      this.categories.map((category: Category) => {
-        if (category.url === this.categoryUrl) {
-          idForFilter = category.id;
-        }  
-      });
-    console.log(this.categoryUrl);
-      
-    this.filtredDishes = this.dishes.filter((dish) => dish.category.includes(this.categoryUrl));
-    // console.log(this.filtredDishes);
-    
-  }
-
-  public setFilterUrl(categoryUrl: string){
-    this.categoryUrl = categoryUrl;   
+    const idForFilter = this.categories.find((category: Category) => category.url === this.categoryUrl)?.id || '';
+    this.filtredDishes = this.dishes.filter((dish) => dish.category.includes(idForFilter));
   }
 }
 

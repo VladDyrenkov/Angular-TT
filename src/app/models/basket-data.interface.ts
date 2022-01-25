@@ -1,4 +1,4 @@
-export interface basketTotal {
+export interface BasketTotal {
   sum: number,
   value: number
 }

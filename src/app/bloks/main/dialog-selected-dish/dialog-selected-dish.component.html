@@ -1,23 +1,31 @@
-<div class="dialog" [class.hideStyle]= "isHide">
-  <div class="dialog__container">
+<div
+  class="dialog__bacground"
+  [class.hideStyle]= "isHide"
+  (click)="hideDialog()"
+  >
+</div>
+<div
+  class="dialog"
+  [class.hideStyle]= "isHide"
+  >
+  <div class="dialog__container" tabindex="-1">
     <div class="dialog__block">
-      <h1 class="dialog__message">Success</h1>
       <div class="dialog__dish">
         <img class="dialog__dish__image" [src]="selectedDish.image">
         <div class="dialog__dish__name">{{selectedDish.name}}</div>
         <div class="dialog__dish__price">{{selectedDish.price}}</div>
-        <div class="Dialog__dish__count">
-        </div>
         <app-counter [(count)]="selectedDish.count"></app-counter>
-        <button
-          class="dialog__dish__btn"
-          (click)="hideDialog()"
-        >cancel</button>
+        <div class="dialog__btn__container">
+          <button
+            class="dialog__btn"
+            (click)="hideDialog()"
+          >Cancel</button>
+          <button
+            class="dialog__btn"
+            (click)="confirm()"
+          >Confirm</button>
+        </div>
       </div>
-      <button
-        class="dialog__btn"
-        (click)="confirm(selectedDish)"
-      >OK</button>
     </div>
   </div>
 </div>

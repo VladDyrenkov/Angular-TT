@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BasketService } from '../../../services/basket/basket.service';
-import { basketTotal } from 'src/app/models/basket-data.interface';
+import { BasketTotal } from 'src/app/models/basket-data.interface';
 import { BasketComponent } from '../basket/basket.component'
 import { BehaviorSubject, Subject } from 'rxjs';
 
@@ -12,16 +12,10 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 export class FooterComponent {
   @ViewChild ('basketCard', {static: false}) basket!: BasketComponent;
-  public basketTotal!: basketTotal;
+  public basketTotal!: BasketTotal;
 
-  public price$:Subject<any> = new BehaviorSubject({});
+  public basketTotal$:Subject<any>;
   constructor(private basketService: BasketService) {
-    this.price$ = basketService.price$;
+    this.basketTotal$ = basketService.basketTotal$;
   }
-
-  // ngOnInit(): void {
-  //   this.basketService.price$.subscribe((data) => {      
-  //     this.basketTotal = data;
-  //   });
-  // };
 }

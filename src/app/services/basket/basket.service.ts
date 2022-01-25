@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { ExtendedDish } from '../dish/dish'
-import { basketTotal } from 'src/app/models/basket-data.interface';
+import { BasketTotal } from 'src/app/models/basket-data.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class BasketService {
-  price$: Subject<any> = new BehaviorSubject({});
+  basketTotal$: Subject<any> = new BehaviorSubject({});
   dish$: Subject<any> = new BehaviorSubject([]);
   valueOfSelectedDish:number = 0;
   sumPriceOfOrder: number = 0;
   private selectedDishes: ExtendedDish[] = [];
 
-  public calcTotalPriceSubject = new BehaviorSubject<basketTotal[]>([]);
 
   constructor() {
   }
@@ -29,11 +28,12 @@ export class BasketService {
     this.selectedDishes.map((dish: ExtendedDish) => {
       if(dish.count){
         const sumPriceOfDish: number = parseFloat((parseFloat(dish.price)* dish.count).toFixed(2));
+        dish.totalPrice = sumPriceOfDish;
         this.sumPriceOfOrder += sumPriceOfDish;        
         this.valueOfSelectedDish += dish.count;
       }
     });
-    this.price$.next({
+    this.basketTotal$.next({
       sum: this.sumPriceOfOrder.toFixed(2),
       value: this.valueOfSelectedDish
     });
@@ -42,7 +42,7 @@ export class BasketService {
   };
 
   public saveDish(dish: ExtendedDish) {
-    const newDish: ExtendedDish = JSON.parse(JSON.stringify(dish));
+    const newDish: ExtendedDish = dish? JSON.parse(JSON.stringify(dish)) : {};
 
     if(!this.selectedDishes.find((item: ExtendedDish) => item.id === newDish.id)) {
       this.selectedDishes.push(newDish);

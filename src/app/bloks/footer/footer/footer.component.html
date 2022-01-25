@@ -1,4 +1,4 @@
-<div class="footer" *ngIf="(price$ | async) as basketTotal">
+<div class="footer" *ngIf="(basketTotal$ | async) as basketTotal">
   <div class="footer__basket">
     <div class="footer__basket-container" (click)="basket.showBaskett()"> 
       <p><i class="fas fa-shopping-basket fa-4x"></i></p>

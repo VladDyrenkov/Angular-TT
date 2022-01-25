@@ -14,9 +14,5 @@ export class CategoryService {
 
   public loadCategories(): Observable<Category[]> {
     return this.http.get<Category[]>('http://localhost:3000/category');
-      // .pipe(first())
-      // .subscribe((data:Category[]) => {
-      //   this.uploadingCategories$.next(data);
-      // });
   }
 }

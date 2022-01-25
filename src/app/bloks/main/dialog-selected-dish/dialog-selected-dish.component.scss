@@ -1,31 +1,24 @@
 .dialog{
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(134, 128, 128, 0.3);
   position: absolute;
-  top:0;
-  right:0;
+  top:50%;
+  right:50%;
+  transform: translateX(50%) translateY(-60%);
+
+  &__bacground{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(134, 128, 128, 0.3);
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 
   &__container{
+    top:50%;
+    right:0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-  }
-
-  &__block{
-    width: 300px;
-    height: 160px;
-    display: flex;
-    position: absolute;
-    justify-content: space-evenly;
-    flex-direction: column;
-    align-items: center;
-
-
-    border: solid 2px #ccc;
-    background: snow;
-    border-radius: 16px;
   }
 
   &__message{
@@ -38,27 +31,41 @@
   &__btn{
     width: 100px;
     height: 40px;
-    border: solid 2px yellow;
+    border: solid 2px #979AB1;
     border-radius: 8px;
     transition: all 0.3s;
     font-size: 24px;
     font-weight: bold;
+    background-color: #342E3D;
+    color: #EAECF6;
 
     &:hover{
-      background-color: yellow;
-      color: white;
+      background-color: #666276;
+      color: #EAECF6;
+      border: solid 2px #342E3D;
+    }
+
+    &__container{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      margin-bottom: 8px;
     }
   }
 
   &__dish{
-    width: 60%px;
-    height: 50%px;
     border: solid #ccc 3px;
+    background-color: #C0C3D3;
+    border-radius: 32px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 
     &__image{
       height: 200px;
       width: 280px;
-      border-radius: 25px;
+      border-radius: 32px;
     }
   }
 }

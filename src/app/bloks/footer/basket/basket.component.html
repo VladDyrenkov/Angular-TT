@@ -1,3 +1,9 @@
+<div
+  class="basket__bacground"
+  [class.hideStyle]="isHide"
+  (click)="hideBasket()"
+  >
+</div>
 <div class="basket" [class.hideStyle]="isHide">
   <div class="basket__content">
     <div *ngIf="dish$">
@@ -13,7 +19,7 @@
               (countChange)="recalcPrice()"
             ></app-counter>
           </div>
-          <div class="dish__price">{{dish.price}}</div>
+          <div class="dish__price">{{dish.totalPrice | currency:'UAH '}}</div>
           <button
             (click)="deleteDish(dish.id)"
             class="dish__button-delete"
@@ -22,5 +28,8 @@
       </div>
     </div>
   </div>
-  <button class="basket__confirm-button" (click)="hideBasket()">Close</button>
+  <div class="basket__bottom-btn">
+    <button class="basket__confirm-button" (click)="hideBasket()">Close</button>
+    <button class="basket__confirm-button" (click)="hideBasket()">Confirm</button>
+  </div>
 </div>

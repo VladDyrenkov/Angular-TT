@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, Input, DoCheck} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input, DoCheck, OnDestroy} from '@angular/core';
 import { BasketService } from 'src/app/services/basket/basket.service';
 import { ExtendedDish } from 'src/app/services/dish/dish';
 import { Dish } from 'src/app/models/dish.interface';
@@ -11,7 +11,7 @@ import { Dish } from 'src/app/models/dish.interface';
 export class DialogSelectedDishComponent {
   @Output() dialogButton: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() set selectedDishLink(dish: Dish | undefined) {
-    this.selectedDish = dish ? JSON.parse(JSON.stringify(dish)) : {};
+    this.selectedDish = new ExtendedDish(dish ? JSON.parse(JSON.stringify(dish)) : {});
   }
   isHide: boolean = true;
 
@@ -20,15 +20,16 @@ export class DialogSelectedDishComponent {
   constructor(private basketService: BasketService) {
   }
 
-  confirm(dish:ExtendedDish) {
+  confirm() {
     if(this.selectedDish.count){
-      this.basketService.saveDish(dish);
+      this.basketService.saveDish(this.selectedDish);
     }
     this.hideDialog();
   }
 
   //Sending status visibility of edit order window
   public hideDialog(){
+    this.selectedDish.count = 1;
     this.isHide = true;
   }
 
@@ -36,5 +37,3 @@ export class DialogSelectedDishComponent {
     this.isHide = false;
   }
 }
-
-

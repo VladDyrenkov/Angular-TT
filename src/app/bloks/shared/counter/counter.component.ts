@@ -10,11 +10,12 @@ export class Counter {
   @Output() public countChange: EventEmitter<number> = new EventEmitter<number>();
   @Input() public count: number = 1;
 
-  constructor() { }
+  constructor() { 
+  }
 
   public increase(): void {
     this.count++;
-    this.countChange.emit(this.count);
+    this.countChange.emit(this.count);    
   }
 
   public decrease(): void {

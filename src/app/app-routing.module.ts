@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoryDishesComponent } from './bloks/main/category-dishes/category-dishes.component';
-import { CategoryComponent } from './bloks/main/category/category.component';
+import { AuthModule } from './services/Auth/auth/auth.module';
 
 const routes: Routes = [
   {
@@ -13,10 +12,14 @@ const routes: Routes = [
     redirectTo: 'categories',
     pathMatch: 'full'
   },
+  {
+    path: 'auth',
+    loadChildren: () => import('./services/Auth/auth/auth.module').then((module) => module.AuthModule),
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),AuthModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

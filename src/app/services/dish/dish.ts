@@ -7,6 +7,7 @@ export class ExtendedDish implements Dish {
   public category: string[];
   public image: string;
   public count: number;
+  public totalPrice: number;
 
   constructor(dish: Dish) {
     this.name = dish.name;
@@ -15,5 +16,6 @@ export class ExtendedDish implements Dish {
     this.category = dish.category;
     this.image = dish.image
     this.count = 1;
+    this.totalPrice = 0;
   }
 }
