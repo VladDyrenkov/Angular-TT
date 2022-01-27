@@ -7,7 +7,7 @@ import { Counter } from './counter/counter.component';
 @NgModule({
   declarations: [Counter],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [Counter]
 })

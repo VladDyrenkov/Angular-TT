@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthModule } from './services/Auth/auth/auth.module';
+import { AdminPageComponent } from './bloks/admin-page/admin-page.component';
+import { AuthGuard } from './services/Auth/auth.guard';
+import { AuthModule } from './services/Auth/auth.module';
 
 const routes: Routes = [
   {
     path: 'categories',
     loadChildren: () => import('./bloks/main/category/category.module').then((m) => m.CategoryModule),
+    canActivate: [AuthGuard] 
   },
   {
     path: '',
@@ -14,8 +17,13 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: () => import('./services/Auth/auth/auth.module').then((module) => module.AuthModule),
-  }
+    loadChildren: () => import('./services/Auth/auth.module').then((module) => module.AuthModule),
+  },
+  { 
+    path: 'admin',
+    component: AdminPageComponent,
+    canActivate: [AuthGuard] 
+  },
 ];
 
 @NgModule({
