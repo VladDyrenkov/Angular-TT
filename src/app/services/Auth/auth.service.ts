@@ -6,8 +6,11 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { first } from 'rxjs/operators'
 import { User } from 'src/app/models/users.interface';
 import { UserInfo } from './auth/user.info.interface';
+import { HttpParams } from '@angular/common/http';
 
 const jwtHelper = new JwtHelperService();
+// let params = new HttpParams().set('login','')
+
 @Injectable({
   providedIn: 'root'
 })

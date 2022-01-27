@@ -8,7 +8,11 @@ const routes: Routes = [
   {
     path: 'categories',
     loadChildren: () => import('./bloks/main/category/category.module').then((m) => m.CategoryModule),
-    canActivate: [AuthGuard] 
+    canActivate: [AuthGuard],
+    // canActivateChild: [AuthGuard],
+    // children: [
+    //   {path: }
+    // ] 
   },
   {
     path: '',

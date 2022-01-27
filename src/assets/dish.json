@@ -138,5 +138,19 @@
       "image": "https://web.flyereats.in/upload/1591207022-continental.jpg",
       "url": "taco"
     }
+  ],
+  "users":[
+    {
+      "login": "login@login.login",
+      "password": "passwod",
+      "id": 1,
+      "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJpYXQiOjE2NDMyMDEwMTUsImV4cCI6MTY3NDczNzAxNiwiYXVkIjoiIiwic3ViIjoiIiwibG9naW4iOiJsb2dpbkBsb2dpbi5sb2dpbiIsInBhc3N3b3JkIjoicGFzc3dvcmQifQ.HqfPuHXXA46af97JU0bARG63mHpFK2Q__1ABvLLMkwU"
+    },
+    {
+      "login": "test",
+      "password": "test",
+      "id": 2,
+      "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJpYXQiOjE2NDMyMDEwMTUsImV4cCI6MTY3NDczNzAxNiwiYXVkIjoiIiwic3ViIjoiIiwibG9naW4iOiJsb2dpbkBsb2dpbi5sb2dpbiIsInBhc3N3b3JkIjoicGFzc3dvcmQifQ.HqfPuHXXA46af97JU0bARG63mHpFK2Q__1ABvLLMkwU"
+    }
   ]
 }
