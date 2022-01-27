@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { ExtendedDish } from '../dish/dish'
-import { BasketTotal } from 'src/app/models/basket-data.interface';
 
 @Injectable({
   providedIn: 'root'

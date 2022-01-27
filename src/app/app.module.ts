@@ -8,7 +8,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BasketComponent } from './bloks/footer/basket/basket.component';
 import { SharedModule } from './bloks/shared/shared.module';
-import { AuthModule } from './services/Auth/auth/auth.module';
+import { AuthModule } from './services/Auth/auth.module';
+import { AdminPageComponent } from './bloks/admin-page/admin-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from './services/Auth/auth.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -16,16 +20,19 @@ import { AuthModule } from './services/Auth/auth/auth.module';
     HeaderComponent,
     FooterComponent,
     BasketComponent,
+    AdminPageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     SharedModule,
-    AuthModule,
+    AuthModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
