@@ -1,18 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminPageComponent } from './bloks/admin-page/admin-page.component';
+import { AdminPageComponent } from 'src/app/pages/admin/admin-page.component';
 import { AuthGuard } from './services/Auth/auth.guard';
 import { AuthModule } from './services/Auth/auth.module';
 
 const routes: Routes = [
   {
     path: 'categories',
-    loadChildren: () => import('./bloks/main/category/category.module').then((m) => m.CategoryModule),
+    loadChildren: () => import('src/app/pages/content/main/category/category.module').then((m) => m.CategoryModule),
     canActivate: [AuthGuard],
-    // canActivateChild: [AuthGuard],
-    // children: [
-    //   {path: }
-    // ] 
   },
   {
     path: '',
@@ -20,7 +16,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'auth',
+    path: 'login',
     loadChildren: () => import('./services/Auth/auth.module').then((module) => module.AuthModule),
   },
   { 

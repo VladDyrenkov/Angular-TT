@@ -2,25 +2,26 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './bloks/header/header.component';
-import { FooterComponent } from './bloks/footer/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BasketComponent } from './bloks/footer/basket/basket.component';
-import { SharedModule } from './bloks/shared/shared.module';
+import { SharedModule } from 'src/app/pages/shared/shared.module';
 import { AuthModule } from './services/Auth/auth.module';
-import { AdminPageComponent } from './bloks/admin-page/admin-page.component';
+import { AdminPageComponent } from 'src/app/pages/admin/admin-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from './services/Auth/auth.service';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { RegistrationComponent } from 'src/app/pages/authenticate/registration/registration.component';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './store/effects/auth.effects';
+import { StoreModule } from '@ngrx/store';
+import * as AuthReducer from "./store/reducers/auth.reducers";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+import { DishUploadingEffects } from './store/effects/dish.loading.effects';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    BasketComponent,
     AdminPageComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,8 +30,14 @@ import { JwtHelperService } from '@auth0/angular-jwt';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     SharedModule,
-    AuthModule
-    
+    AuthModule,
+    EffectsModule.forRoot([AuthEffects, DishUploadingEffects]),
+    StoreModule.forRoot({auth: AuthReducer.authReducer}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, 
+      logOnly: environment.production, 
+      autoPause: true, 
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
