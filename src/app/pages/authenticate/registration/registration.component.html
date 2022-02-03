@@ -1,0 +1,83 @@
+<div class="registration">
+  <div class="registration__header">
+    <h1>Registration</h1>
+  </div>
+  <form class="registration__form" [formGroup]="registrationForm">
+    <input
+      type="email"
+      formControlName='email'
+      placeholder="Email"
+      autocomplete="off"
+      required
+      class="registration__input"
+    >
+    <div class="registration__error">
+      <div *ngIf="email?.errors?.['required'] && email?.dirty" class="email__error">
+        Email is required
+      </div>
+      <div *ngIf="email?.errors?.['email'] && email?.dirty" class="email__error">
+        Email is required
+      </div>
+      <div *ngIf="!email?.errors?.['email'] && email?.dirty && emailError" class="email__error">
+        This email is used
+      </div>
+    </div>
+    <input
+      type="password"
+      formControlName='password'
+      placeholder="Password"
+      autocomplete="off"
+      required
+      class="registration__input"
+    >
+    <div class="registration__error">
+      <div *ngIf="password?.errors?.['required'] && password?.dirty" class="password__error">
+        Password is required
+      </div>
+      <div *ngIf="password?.errors?.['minlength'] && password?.dirty" class="password__error">
+        Password min length is 8 symbols
+      </div>
+    </div>
+    <input
+      type="password"
+      formControlName='passwordChek'
+      placeholder="Password"
+      autocomplete="off"
+      required
+      class="registration__input"
+    >
+    <div class="registration__error">
+      <div *ngIf="passwordChek?.errors?.['required'] && passwordChek?.dirty" class="email__error">
+        Password is required
+      </div>
+      <div *ngIf="passwordChek?.errors?.['minlength'] && passwordChek?.dirty" class="password__error">
+        Password min length is 8 symbols
+      </div>
+      <div *ngIf="passwordChek?.errors?.['notEqualPassword'] 
+        && passwordChek?.dirty 
+        && !passwordChek?.errors?.['minlength']
+        && !passwordChek?.errors?.['required']"
+        class="password__error">
+        Password not equal
+      </div>
+    </div>
+    <div class="registration__btn__container">
+      <button
+        class="registration__btn"
+        type="submit"
+        (click)="loginRedirect()"
+      >
+       I have account login!
+      </button>
+      <button
+      [class.registration__btn-disabled]="!registrationForm.valid"
+      [disabled]="!registrationForm.valid"
+      class="registration__btn"
+      type="submit"
+      (click)="saveUserData()"
+      >
+        Registration
+      </button>
+    </div>
+  </form>
+</div>

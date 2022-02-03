@@ -1,0 +1,35 @@
+<div
+  class="basket__bacground"
+  [class.hideStyle]="isHide"
+  (click)="hideBasket()"
+  >
+</div>
+<div class="basket" [class.hideStyle]="isHide">
+  <div class="basket__content">
+    <div *ngIf="dish$">
+      <div class="basket__content__catalog" *ngFor="let dish of (dish$ | async)">
+        <div class="dish">
+          <div class="dish__image">
+          </div>
+          <div class="dish__name">{{dish.name}}</div>
+          <div class="dish__value">{{dish.count}}</div>
+          <div class="dish__value-incdec">
+            <app-counter
+              [(count)]="dish.count"
+              (countChange)="recalcPrice()"
+            ></app-counter>
+          </div>
+          <div class="dish__price">{{dish.totalPrice | currency:'UAH '}}</div>
+          <button
+            (click)="deleteDish(dish.id)"
+            class="dish__button-delete"
+          >X</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="basket__bottom-btn">
+    <button class="basket__confirm-button" (click)="hideBasket()">Close</button>
+    <button class="basket__confirm-button" (click)="hideBasket()">Confirm</button>
+  </div>
+</div>
