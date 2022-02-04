@@ -8,7 +8,7 @@ export const logInAction = createAction (
 
 export const userSaveAction = createAction (
   '[User Save]',
-  props<{user: User}>()
+  props<User>()
 );
 
 export const logOutAction = createAction (

@@ -9,7 +9,7 @@ export const authReducer: ActionReducer<AuthState, Action> = createReducer(
       password: password,
       token: ''}}
   }),
-  on(userSaveAction, (state, { user }) => {
+  on(userSaveAction, (state, user) => {
     console.log(user);
     
     return {...state, user}

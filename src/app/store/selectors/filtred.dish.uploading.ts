@@ -17,4 +17,4 @@ export const filteredDish = createSelector(
     const idForFilter = uploadedCategories.category.find((category: Category) => category.url === props)?.id || '';
     return uploadedDish.dish.filter((dish: Dish) => dish.category.includes(idForFilter));
   }
-)
+);

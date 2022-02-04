@@ -15,7 +15,7 @@ export class AuthEffects {
     ofType(logInAction),
     mergeMap((action) => this.authService!.checkUser(action.email, action.password)
       .pipe(
-        map(user => userSaveAction({ user })),
+        map(user => userSaveAction(user)),
         catchError(() => EMPTY)
       ))
     )

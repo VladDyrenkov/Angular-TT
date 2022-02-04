@@ -27,11 +27,18 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
+    if (token) {
+
+    }
     return  !jwtHelper.isTokenExpired(token || '');
   }
 
   checkUser(email: string, password: string): Observable<User> {
     return this.http.get<User[]>(`${environment.apiUrl}/users?email=${email}&password=${password}`).pipe(first(), map((user: User[]) => user[0]));
+  }
+
+  getUserByToken(token: string): Observable<User> {
+    return this.http.get<User[]>(`${environment.apiUrl}/users?token=${token}`).pipe(first(), map((user: User[]) => user[0]));
   }
   
   checkEmail(email: string): Observable<User> {

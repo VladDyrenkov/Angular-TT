@@ -19,7 +19,3 @@ export const initialAppState: AppState = {
   basketTotalState: initialIBasketTotalState,
   user: initialUserState
 };
-
-export function getInitialState(): AppState {
-  return initialAppState;
-}
