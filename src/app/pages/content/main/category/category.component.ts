@@ -9,6 +9,7 @@ import { DishesService } from 'src/app/services/dish/dishes.service';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
 import { uploadingDish } from 'src/app/store/actions/dish.loading.actions';
+import { uploadingCategory } from 'src/app/store/actions/category.uploading.actions';
 
 @Component({
   selector: 'app-category',
@@ -37,6 +38,7 @@ export class CategoryComponent implements OnDestroy{
 
   ngOnInit() {
     this.store.dispatch(uploadingDish())
+    this.store.dispatch(uploadingCategory());
     this.subscription = forkJoin([
       this.categoryService.loadCategories(),
       this.dishesService.loadDishes()

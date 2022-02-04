@@ -16,6 +16,7 @@ import * as AuthReducer from "./store/reducers/auth.reducers";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { DishUploadingEffects } from './store/effects/dish.loading.effects';
+import { CategoryUploadingEffects } from './store/effects/category.uploading.effects';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { DishUploadingEffects } from './store/effects/dish.loading.effects';
     ReactiveFormsModule,
     SharedModule,
     AuthModule,
-    EffectsModule.forRoot([AuthEffects, DishUploadingEffects]),
+    EffectsModule.forRoot([AuthEffects, DishUploadingEffects, CategoryUploadingEffects]),
     StoreModule.forRoot({auth: AuthReducer.authReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, 
