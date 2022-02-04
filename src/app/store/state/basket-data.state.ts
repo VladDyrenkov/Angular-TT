@@ -1,9 +1,9 @@
-import { IBasketTotal } from "../interface/basket-data.interface";
+import { BasketTotal } from "src/app/models/basket-data.interface"
 
-export interface IBasketTotalState {
-  basketTotal: IBasketTotal | null
+export interface BasketTotalState {
+  basketTotal: BasketTotal | null
 };
 
-export const initialIBasketTotalState: IBasketTotalState = {
+export const initialIBasketTotalState: BasketTotalState = {
   basketTotal: null
 }

@@ -1,9 +1,9 @@
-import { ICategory } from "../interface/category.interface";
+import { Category } from "src/app/models/category.interface";
 
-export interface ICategoryState {
-  categories: ICategory[]
+export interface CategoryState {
+  category: Category[]
 };
 
-export const initialICategoryState: ICategoryState = {
-  categories: []
+export const initialICategoryState: CategoryState = {
+  category: []
 };

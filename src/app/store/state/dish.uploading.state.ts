@@ -1,9 +1,10 @@
-import { IDish } from "../interface/dish.interface";
+import { Dish } from "src/app/models/dish.interface";
 
-export interface IDishState {
-  dish: IDish[]
+
+export interface DishState {
+  dish: Dish[]
 };
 
-export const initialDishUploadingState: IDishState = {
+export const initialDishUploadingState: DishState = {
   dish: []
 };

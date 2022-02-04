@@ -1,7 +1,7 @@
-import { IUser } from "../interface/users.interface";
+import { User } from "src/app/models/users.interface";
 
 export interface AuthState {
-  user: IUser;
+  user: User;
 }
 
 export const initialAuthState: AuthState = {

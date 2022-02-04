@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { IUser } from "../interface/users.interface";
+import { User } from "src/app/models/users.interface"; 
 
 export const logInAction = createAction (
   '[Login Page] Login',
@@ -8,7 +8,7 @@ export const logInAction = createAction (
 
 export const userSaveAction = createAction (
   '[User Save]',
-  props<{user: IUser}>()
+  props<{user: User}>()
 );
 
 export const logOutAction = createAction (

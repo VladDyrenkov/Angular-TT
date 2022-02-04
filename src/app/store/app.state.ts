@@ -1,16 +1,14 @@
-import { RouterReducerState } from "@ngrx/router-store";
-import { IUserState, initialUserState } from 'src/app/store/state/user.state';
-import { IDishState, initialDishUploadingState } from "./state/dish.uploading.state";
-import { ICategoryState, initialICategoryState } from "./state/category.state";
-import { IBasketTotalState, initialIBasketTotalState } from "./state/basket-data.state";
+import { UserState, initialUserState } from 'src/app/store/state/user.state';
+import { DishState, initialDishUploadingState } from "./state/dish.uploading.state";
+import { CategoryState, initialICategoryState } from "./state/category.state";
+import { BasketTotalState, initialIBasketTotalState } from "./state/basket-data.state";
 import { AuthState, initialAuthState } from 'src/app/store/state/auth.state'
 
 export interface AppState {
-  router?: RouterReducerState;
-  dishState: IDishState;
-  categoryState: ICategoryState;
-  basketTotalState: IBasketTotalState;
-  user: IUserState;
+  dishState: DishState;
+  categoryState: CategoryState;
+  basketTotalState: BasketTotalState;
+  user: UserState;
   authState: AuthState;
 }
 

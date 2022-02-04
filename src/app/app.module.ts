@@ -12,11 +12,13 @@ import { RegistrationComponent } from 'src/app/pages/authenticate/registration/r
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './store/effects/auth.effects';
 import { StoreModule } from '@ngrx/store';
-import * as AuthReducer from "./store/reducers/auth.reducers";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { DishUploadingEffects } from './store/effects/dish.loading.effects';
 import { CategoryUploadingEffects } from './store/effects/category.uploading.effects';
+import { authReducer } from './store/reducers/auth.reducers';
+import { uploadDishReducer } from './store/reducers/dish.loading.reducer';
+import { uploadingCategoryReducer } from './store/reducers/categoly.uploading.reducer';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,11 @@ import { CategoryUploadingEffects } from './store/effects/category.uploading.eff
     SharedModule,
     AuthModule,
     EffectsModule.forRoot([AuthEffects, DishUploadingEffects, CategoryUploadingEffects]),
-    StoreModule.forRoot({auth: AuthReducer.authReducer}),
+    StoreModule.forRoot({
+      authState: authReducer,
+      dishState: uploadDishReducer,
+      categoryState: uploadingCategoryReducer
+    }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, 
       logOnly: environment.production, 

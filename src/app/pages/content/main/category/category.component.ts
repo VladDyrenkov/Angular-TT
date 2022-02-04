@@ -1,15 +1,16 @@
-import { Component, DoCheck, OnDestroy } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router} from '@angular/router';
-import { filter, forkJoin } from 'rxjs';
+import { Component, OnDestroy } from '@angular/core';
+import { ActivatedRoute} from '@angular/router';
+import { forkJoin } from 'rxjs';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { Category } from 'src/app/models/category.interface';
 import { Dish } from 'src/app/models/dish.interface';
 import { DishesService } from 'src/app/services/dish/dishes.service';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
 import { uploadingDish } from 'src/app/store/actions/dish.loading.actions';
 import { uploadingCategory } from 'src/app/store/actions/category.uploading.actions';
+import { filteredDish } from 'src/app/store/selectors/filtred.dish.uploading';
 
 @Component({
   selector: 'app-category',
@@ -57,8 +58,7 @@ export class CategoryComponent implements OnDestroy{
   }
 
   private fileredDish(): void {
-    const idForFilter = this.categories.find((category: Category) => category.url === this.categoryUrl)?.id || '';
-    this.filtredDishes = this.dishes.filter((dish) => dish.category.includes(idForFilter));
+    this.store.pipe(select(filteredDish, this.categoryUrl)).subscribe((data: Dish[]) => this.filtredDishes = data)
   }
 }
 
