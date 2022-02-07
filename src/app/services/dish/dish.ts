@@ -1,4 +1,5 @@
 import { Dish } from '../../models/dish.interface';
+import { ExtendedIngregients } from '../ingredients/ingredients';
 
 export class ExtendedDish implements Dish {
   public name: string;
@@ -8,6 +9,7 @@ export class ExtendedDish implements Dish {
   public image: string;
   public count: number;
   public totalPrice: number;
+  public ingridients?: ExtendedIngregients[];
 
   constructor(dish: Dish) {
     this.name = dish.name;

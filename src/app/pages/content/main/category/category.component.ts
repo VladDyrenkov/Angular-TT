@@ -54,7 +54,7 @@ export class CategoryComponent implements OnDestroy{
   }
 
   ngOnDestroy(): void {
-      this.subscriptionRout.unsubscribe();
+    this.subscriptionRout.unsubscribe();
   }
 
   private fileredDish(): void {

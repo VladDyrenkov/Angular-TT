@@ -179,5 +179,37 @@
       "id": "a5c22d64-731b-1659-aaaa-9a5f63c348f7",
       "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJpYXQiOjE2NDMyMDEwMTUsImV4cCI6MTY3NDczNzAxNiwiYXVkIjoiIiwic3ViIjoiIiwibG9naW4iOiJsb2dpbkBsb2dpbi5sb2dpbiIsInBhc3N3b3JkIjoicGFzc3dvcmQifQ.HqfPuHXXA46af97JU0bARG63mHpFK2Q__1ABvLLMkwU"
     }
+  ],
+  "ingredients": [
+    {
+      "name": "Becon",
+      "price": "2.0$",
+      "id": "1hk2g34j12udlkpdc3f4jgj,"
+    },
+    {
+      "name": "Cheese сheddar",
+      "price": "0.7$",
+      "id": "xjghcj6x5g4xhdj1gh25jxfg"
+    },
+    {
+      "name": "Honey",
+      "price": "0.3$",
+      "id": "truidfv4b6fg1vcz66v4ds"
+    },
+    {
+      "name": "Рrosciutto",
+      "price": "3.0$",
+      "id": "q68e6v2hy61zx65c49dr84"
+    },
+    {
+      "name": "Grissini",
+      "price": "1.0$",
+      "id": "vb6we5j6dcv16vbzfh62kxa"
+    },
+    {
+      "name": "Сhili pepper",
+      "price": "0.25$",
+      "id": "zu1s5gd6ecvg2s5bf3s5f2c3b"
+    }
   ]
 }
