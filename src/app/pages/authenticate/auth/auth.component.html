@@ -1,0 +1,54 @@
+<div class="auth">
+  <div class="auth__header">
+    <h1>Login</h1>
+  </div>
+  <form [formGroup]="loginForm" class="auth__block">
+    <input
+      formControlName="email"
+      type="email"
+      placeholder="Email"
+      class="auth__input"
+      required
+      autocomplete="off"
+    >
+    <div class="auth__error">
+        <div *ngIf="email?.errors?.['required'] && email?.dirty" class="login__error">
+          Email is required
+        </div>
+        <div *ngIf="email?.errors?.['email'] && email?.dirty" class="login__error">
+          Email is invalid
+        </div>
+    </div>
+    <input
+      formControlName="password"
+      type="password"
+      placeholder="Password"
+      required
+      class="auth__input"
+    >
+    <div class="auth__error">
+      <div *ngIf="password?.errors?.['minlength'] && password?.dirty" class="login__error">
+        Min length is 8 symbols
+      </div>
+      <div *ngIf="password?.errors?.['required'] && password?.dirty" class="login__error">
+        Password is required
+      </div>
+    </div>
+    <div class="auth__btn__container">
+      <button
+        class="auth__btn"
+        (click)="registerRedirect()"
+      >Don`t have account Register</button>
+      <button
+        [class.auth__btn-disabled]="!loginForm.valid"
+        [disabled]="!loginForm.valid"
+        class="auth__btn"
+        (click)="authProcess()"
+      >Log in</button>
+    </div>
+    <div *ngIf="!loginStatus" class="auth__message">
+      <p>Invalid password or login</p>
+    </div>
+  </form>
+</div>
+
